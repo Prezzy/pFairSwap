@@ -1,5 +1,3 @@
-# pFairSwap
-pFairSwap files for PoPETS submission
 # Private-FariSwap
 Experimental Implementation of Private FairSwap
 
@@ -50,30 +48,49 @@ experiment-uniHash directory:
 ********************************************************************
 aritheval.py:
  def eval_internal(self, ae):
+ 
  16                 input = ae.lookup(self.wire_id)
+ 
  17                 ####################################
+ 
  18                 #Uncomment out the below line and then comment
+ 
  19                 #out the last return statment to adjust the feild
+ 
  20                 #Pinocchio used to compute circuits. replace '89'
+ 
  21                 #with the feild size you would like to use.
+ 
  22                 ####################################
  23 
  24                 #return(pow(input*self.const,1,(2**89)-1))
+ 
  25                 return input*self.const
 
 
 BaseEval.py:
 def eval_internal(self, ae):
+
  36                 input_args = map(ae.lookup, self.wire_list)
+ 
  37                 ############################
+ 
  38                 #Uncommet the lines below to execute Pinocchio
- 39                 #in different feild sizes, replace 89 with 
+ 
+ 39                 #in different feild sizes, replace 89 with
+ 
  40                 #desired feild size and replave self.pyop
+ 
  41                 #in return command with modOp
+ 
  42                 ############################
+ 
  43                 #def modOp(a,b):
+ 
  44                         #result = self.pyop(a,b)
+ 
  45                         #return(pow(result,1,(2**89)-1)
+ 
  46                 return reduce(self.pyop, input_args)
 
 
@@ -92,3 +109,4 @@ def eval_internal(self, ae):
 ***********************************************************************
 
 The Judge.sol file is an Ethereum smart contract that evaluates a Proof of Misbehaviour. We executes this smart contract on the browser based IDE remix. As our implementation was a prototype proof of concept we generated the inputs using the generate-pom.py script and copy and pasted each input into the remix input feilds.
+
